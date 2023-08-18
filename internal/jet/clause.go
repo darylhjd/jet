@@ -380,7 +380,7 @@ func (i *ClauseInsert) GetColumns() []Column {
 		return i.Columns
 	}
 
-	return i.Table.columns()
+	return i.Table.Columns()
 }
 
 // Serialize serializes clause into SQLBuilder

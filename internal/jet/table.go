@@ -10,7 +10,7 @@ type SerializerTable interface {
 
 // Table interface
 type Table interface {
-	columns() []Column
+	Columns() []Column
 	SchemaName() string
 	TableName() string
 	Alias() string
@@ -54,7 +54,7 @@ func (t *tableImpl) TableName() string {
 	return t.name
 }
 
-func (t *tableImpl) columns() []Column {
+func (t *tableImpl) Columns() []Column {
 	ret := []Column{}
 
 	for _, col := range t.columnList {
@@ -134,14 +134,14 @@ func (t *joinTableImpl) TableName() string {
 	return ""
 }
 
-func (t *joinTableImpl) columns() []Column {
+func (t *joinTableImpl) Columns() []Column {
 	var ret []Column
 
 	if lhsTable, ok := t.lhs.(Table); ok {
-		ret = append(ret, lhsTable.columns()...)
+		ret = append(ret, lhsTable.Columns()...)
 	}
 	if rhsTable, ok := t.rhs.(Table); ok {
-		ret = append(ret, rhsTable.columns()...)
+		ret = append(ret, rhsTable.Columns()...)
 	}
 
 	return ret
